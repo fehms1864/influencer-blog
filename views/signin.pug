@@ -1,0 +1,49 @@
+extends layout
+
+block content
+    -data = data || {}
+
+    if errors
+        ul.my-errors
+        for error in errors
+            li= error.msg
+    h2 Sign in
+    p log in by entering your email address and password
+    form(action="." method="POST" class="form-registration")
+        label(for="email") Email address
+        input(
+            type="email"
+            id="email"
+            placeholder="name@example.com"
+            name="email"
+            class="form-control"
+            value=data.email
+        )
+
+        label(for="password") Password
+        input(
+            type="text"
+            id="password"
+            placeholder="password"
+            name="password"
+            class="form-control"
+            value=data.password
+        )
+
+        input(
+            type="submit" 
+            value="Log in"
+            class="btn btn-lg btn-dark btn-block"
+        )
+
+        div( 
+            class="form-check form-switch")
+            input(
+                class="form-check-input" 
+                type="checkbox" role="switch" 
+                id="flexSwitchCheckDefault"
+            )
+            label(
+                class="form-check-label" 
+                for="flexSwitchCheckDefault"
+            ) Remember me
