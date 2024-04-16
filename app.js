@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+const mongoose = require('mongoose');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -11,7 +12,7 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -36,6 +37,28 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+//MONGOOSE CONNECTION
+mongoose.connect('mongodb://localhost:27017/contactUs', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+mongoose.connection
+  .on('open', () => {
+    console.log('Mongoose connection open');
+  })
+  .on('error', (err) => {
+    console.log(`Connection error: ${err.message}`);
+  });
+
+require('./models/Contact');
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
 
 module.exports = app;
