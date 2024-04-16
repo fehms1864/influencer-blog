@@ -12,15 +12,13 @@ router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/home', function (req, res, next) {
+  res.render('blog', { title: 'Influence Blog' });
+});
+
 router.get('/contact', (req, res) => {
   res.render('contactUs');
 });
-
-// router.post('/submit', (req, res) => {
-//   // Handle form submission here
-//   console.log(req.body);
-//   res.send('Form submitted successfully!');
-// });
 
 router.post('/submit',
   [
