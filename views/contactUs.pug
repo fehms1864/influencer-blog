@@ -1,0 +1,21 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Contact Us
+    link(rel="stylesheet", href="/stylesheet/styles.css")
+  body
+    header
+      h1 Contact Us
+    main
+      -data = data || {}
+      form(id="contactForm" action="/submit" method="POST")
+        label(for="name") Name:
+        input(type="text", id="name", name="name", value=data.name, required)
+        label(for="email") Email:
+        input(type="email", id="email", name="email", value=data.email, required)
+        label(for="message") Message:
+        textarea(id="message", name="message", rows="5", value=data.message, required)
+        button(type="submit") Submit
+    script(src="/js/main.js")
