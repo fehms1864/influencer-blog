@@ -1,65 +1,66 @@
-const express = require('express');
+var express = require('express');
 const mongoose = require('mongoose');
-const path = require('path');
-const auth = require('http-auth');
+var router = express.Router();
 const { check, validationResult } = require('express-validator');
-const bcrypt = require('bcrypt');
 
-const router = express.Router();
-const Registration = mongoose.model('Registration');
-const basic = auth.basic({
-  file: path.join(__dirname, '../users.htpasswd'),
+const { contactUsSchema } = require('../models/Contact');
+
+const Contact = mongoose.model('Contact', contactUsSchema);
+
+/* GET home page. */
+router.get('/', function (req, res, next) {
+  res.render('index', { title: 'Express' });
 });
 
-router.get('/', (req, res) => {
-  //res.send('It works!');
-  res.render('form', { title: 'Registration form' });
+router.get('/home', function (req, res, next) {
+  res.render('blog', { title: 'Influence Blog' });
 });
 
-router.get('/registrations', basic.check((req, res) => {
-  Registration.find()
-    .then((registrations) => {
-      res.render('index', { title: 'Listing registrations', registrations });
-    })
-    .catch(() => { 
-      res.send('Sorry! Something went wrong.'); 
-    });
-}));
+router.get('/contact', (req, res) => {
+  res.render('contactUs');
+});
 
-router.post('/', 
-    [
-        check('name')
-        .isLength({ min: 1 })
-        .withMessage('Please enter a name'),
-        check('email')
-        .isLength({ min: 1 })
-        .withMessage('Please enter an email'),
-        check('password')
-        .isLength({ min: 1 })
-        .withMessage('Please enter a password'),
-    ],
-    async (req, res) => {
-        //console.log(req.body);
-        const errors = validationResult(req);
-        if (errors.isEmpty()) {
-          const registration = new Registration(req.body);
-          // generate salt to hash password
-          const salt = await bcrypt.genSalt(10);
-          // set user password to hashed password
-          registration.password = await bcrypt.hash(registration.password, salt);
-          registration.save()
-            .then(() => {res.send('Thank you for your registration!');})
-            .catch((err) => {
-              console.log(err);
-              res.send('Sorry! Something went wrong.');
-            });
-          } else {
-            res.render('form', { 
-                title: 'Registration form',
-                errors: errors.array(),
-                data: req.body,
-             });
-          }
-    });
+router.post('/submit',
+  [
+    check('name')
+      .isLength({ min: 3 })
+      .withMessage('Please enter a name'),
+    check('email')
+      .isLength({ min: 3 })
+      .withMessage('Please enter an email'),
+    check('message')
+      .isLength({ min: 1 })
+      .withMessage('Please enter your message'),
+  ],
+  async (req, res) => {
+    //console.log(req.body);
+    const errors = validationResult(req);
+    console.log('req', req);
+    console.log('errors',errors);
+
+    if (errors.isEmpty()) {
+      const contactUs = new Contact(req.body);
+      contactUs.save()
+        .then(() => {
+          // res.render('thankyou', {
+          //   title: 'Thank you Page',
+          //   errors: errors.array(),
+          //   data: req.body
+          // });
+          res.send('Form submitted successfully!');
+        })
+        .catch((err) => {
+          console.log(err);
+          res.send('Sorry! Something went wrong.');
+        });
+    } else {
+      res.send('Sorryyyy');
+      // res.render('register', {
+      //   title: 'Registration form',
+      //   errors: errors.array(),
+      //   data: req.body,
+      // });
+    }
+  });
 
 module.exports = router;
