@@ -1,33 +1,32 @@
-extends layout
-
-block content
-    -data = data || {}
-
-    if errors
-        ul.my-errors
-        for error in errors
-            li= error.msg
+doctype html
+html
+  head
+    link(rel='stylesheet', href='css/signin.css')
+    link(href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css", rel="stylesheet")
+  body
+  div.container
+    a(href="/") Go Back
     h2 Sign in
-    p log in by entering your email address and password
-    form(action="." method="POST" class="form-registration")
-        label(for="email") Email address
+    p Log in by entering your username and password
+    form(action="/signin" method="post" class="form-registration")
+        label(for="username") Username
         input(
-            type="email"
-            id="email"
-            placeholder="name@example.com"
-            name="email"
+            type="text"
+            id="username"
+            placeholder="Enter name here"
+            name="username"
             class="form-control"
-            value=data.email
+            required
         )
 
         label(for="password") Password
         input(
-            type="text"
+            type="password"
             id="password"
-            placeholder="password"
+            placeholder="Enter password here"
             name="password"
             class="form-control"
-            value=data.password
+            required
         )
 
         input(
@@ -36,8 +35,7 @@ block content
             class="btn btn-lg btn-dark btn-block"
         )
 
-        div( 
-            class="form-check form-switch")
+        div(class="form-check form-switch")
             input(
                 class="form-check-input" 
                 type="checkbox" role="switch" 

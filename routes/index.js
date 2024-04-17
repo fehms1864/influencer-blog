@@ -2,6 +2,7 @@ var express = require('express');
 const mongoose = require('mongoose');
 var router = express.Router();
 const { check, validationResult } = require('express-validator');
+exports.users = require('./users');
 
 const { contactUsSchema } = require('../models/Contact');
 
@@ -9,15 +10,19 @@ const Contact = mongoose.model('Contact', contactUsSchema);
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('blog', { title: 'Influence Blog', user: req.user });
 });
 
 router.get('/home', function (req, res, next) {
-  res.render('blog', { title: 'Influence Blog' });
+  res.render('blog', { title: 'Influence Blog', user: req.user });
 });
 
 router.get('/contact', (req, res) => {
-  res.render('contactUs');
+  res.render('contactUs', { title: 'contactUs', user: req.user });
+});
+
+router.get('/signin', (req, res) => {
+  res.render('signin', { title: 'Sign In' });
 });
 
 router.post('/submit',
