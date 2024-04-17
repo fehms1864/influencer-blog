@@ -50,7 +50,7 @@ $(document).ready(function() {
     $("#submitPostBtn").click(function() {
       // Show the comment box
       commentBox.style.display = "block";
-      commentBox.style.zIndex = "1000";
+      commentBox.style.zIndex = "1000";  //check this zindex for shading
     });
 
     // When the user submits the comment form

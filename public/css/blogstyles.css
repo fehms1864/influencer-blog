@@ -197,7 +197,7 @@ footer {
   float: left;
 }
 /* Submit Post Button Styles */
-#submitPostBtn {
+#submitPostBtn {       
   float: right;
   margin-left: 10px;
 }
