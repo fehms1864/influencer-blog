@@ -1,0 +1,23 @@
+#blogModal.modal
+    .modal-dialog
+      .modal-content
+        // Modal Header
+        .modal-header
+          h4.modal-title Submit New Blog Post
+          button.close(type="button", data-dismiss="modal") &times;
+        // Modal Body
+        .modal-body
+          form#blogForm
+            .form-group
+              label(for="bloggerName") Blog Post Name:
+              input.form-control#bloggerName(type="text", required)
+            .form-group
+              label(for="blogContent") Blog Content:
+              textarea.form-control#blogContent(rows="5", required)
+            .form-group
+              label(for="imageUpload") Image Upload:
+              input.form-control-file#imageUpload(type="file", multiple)
+        // Modal Footer
+        .modal-footer
+          button.btn.btn-warning(type="button", data-dismiss="modal") Close
+          button.btn.btn-warning#submitBlogBtn(type="button") Submit Post
