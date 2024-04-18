@@ -1,14 +1,13 @@
 $(document).ready(function() {
-    // Get the modal
-    var modal = document.getElementById("myModal");
-    var commentBox = document.getElementById("commentBox");
+  // Get the modal
+  var modal = document.getElementById("myModal");
+  var commentBox = document.getElementById("commentBox");
 
-    // Get the <span> elements that close the modals
-    var span = document.getElementsByClassName("close");
-  
-    
-    // When the user clicks on an image, open the modal
-    $("img.img-fluid").click(function() {
+  // Get the <span> elements that close the modals
+  var span = document.getElementsByClassName("close");
+
+  // When the user clicks on an image, open the modal
+  $("img.img-fluid").click(function() {
       // Get author's information from the image
       var authorImageSrc = $(this).attr("src");
       var authorName = $(this).data("author-name");
@@ -21,84 +20,80 @@ $(document).ready(function() {
 
       // Show the modal
       modal.style.display = "block";
-    });
+  });
 
-    // When the user clicks the "Follow" button
-    $("#followBtn").click(function() {
+  // When the user clicks the "Follow" button
+  $("#followBtn").click(function() {
       // Replace 'your-social-media-url' with the actual URL you want to link to
       window.open('your-social-media-url', '_blank');
-    });
-  
+  });
 
-    // When the user clicks on <span> (x), close the modal
-    for (var i = 0; i < span.length; i++) {
+  // When the user clicks on <span> (x), close the modal
+  for (var i = 0; i < span.length; i++) {
       span[i].onclick = function() {
-        modal.style.display = "none";
-        commentBox.style.display = "none"; // Close the comment box too
+          modal.style.display = "none";
+          commentBox.style.display = "none"; // Close the comment box too
       };
-    }
+  }
 
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
       if (event.target == modal || event.target == commentBox) {
-        modal.style.display = "none";
-        commentBox.style.display = "none"; // Close the comment box too
+          modal.style.display = "none";
+          commentBox.style.display = "none"; // Close the comment box too
       }
-    };
+  };
 
-    // When the user clicks the "Submit New Post" button
-    $("#submitPostBtn").click(function() {
+  // When the user clicks the "Submit New Post" button
+  $("#submitPostBtn").click(function() {
       // Show the comment box
       commentBox.style.display = "block";
       commentBox.style.zIndex = "1000";  //check this zindex for shading
-    });
+  });
 
-    // When the user submits the comment form
-    $("#commentForm").submit(function(event) {
+  // When the user submits the comment form
+  $("#commentForm").submit(function(event) {
       // Prevent the default form submission
       event.preventDefault();
 
       //  handle the form submission here (e.g., send the comment data to a server)
       // Get the comment data from the form
-         var commentData = {
-              name: $("#commentName").val(), // Assuming there's an input field with id "commentName" for the commenter's name
-              comment: $("#commentContent").val() // Assuming there's a textarea field with id "commentContent" for the comment content
-           };
+      var commentData = {
+          name: $("#commentName").val(), 
+          comment: $("#commentContent").val() 
+      };
 
-  // You can perform any additional validation or processing here
+      // You can perform any additional validation or processing here
 
       // For demonstration purposes, let's log the comment data to the console
-          console.log("Comment Data:", commentData);
+      console.log("Comment Data:", commentData);
 
       // After handling the form submission, you can close the comment box
       commentBox.style.display = "none";
-    });
   });
-  
-//js for blog post submission//
-$(document).ready(function() {
-// Function to open the modal
-$("#openBlogFormBtn").click(function() {
-  $("#blogModal").modal("show");
-});
 
-// Function to handle blog submission
-$("#submitBlogBtn").click(function() {
-  // Retrieve form data
-  var bloggerName = $("#bloggerName").val();
-  var blogContent = $("#blogContentModal").val();
-  var images = $("#imageUploadModal")[0].files;
+  // Function to open the modal for blog submission
+  $("#openBlogFormBtn").click(function() {
+      $("#blogModal").modal("show");
+  });
 
-  // Validate form data (e.g., check if required fields are filled)
+  // Function to handle blog submission
+  $("#submitBlogBtn").click(function() {
+      // Retrieve form data
+      var bloggerName = $("#bloggerName").val();
+      var blogContent = $("#blogContentModal").val();
+      var images = $("#imageUploadModal")[0].files;
 
-  // Process image uploads (if any)
-  var formData = new FormData();
-  formData.append("bloggerName", bloggerName);
-  formData.append("blogContent", blogContent);
-  for (var i = 0; i < images.length; i++) {
-    formData.append("images[]", images[i]);
-  }
+      // Validate form data (e.g., check if required fields are filled)
 
-  // Send form data to the server using ajax
-});
+      // Process image uploads (if any)
+      var formData = new FormData();
+      formData.append("bloggerName", bloggerName);
+      formData.append("blogContent", blogContent);
+      for (var i = 0; i < images.length; i++) {
+          formData.append("images[]", images[i]);
+      }
+
+      // Send form data to the server using ajax
+  });
 });
