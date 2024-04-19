@@ -8,6 +8,8 @@ var passport = require('passport');
 var Strategy = require('passport-local').Strategy;
 var RememberMeStrategy = require('passport-remember-me').Strategy;
 const utils = require('./routes/utils');
+const https = require('https');
+const fs = require('fs');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -73,6 +75,11 @@ passport.deserializeUser(function(id, cb) {
 
 var app = express();
 
+// Load SSL certificate and key
+const privateKey = fs.readFileSync('./server.key', 'utf8');
+const certificate = fs.readFileSync('./server.cert', 'utf8');
+const credentials = { key: privateKey, cert: certificate };
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -92,7 +99,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-//app.use('/users', usersRouter);
 
 //Login and Logout
 app.post('/signin', 
@@ -174,9 +180,12 @@ mongoose.connection
 require('./models/Contact');
 require('./models/BlogPostDetails');
 
+// Create HTTPS server
+const httpsServer = https.createServer(credentials, app);
+
 // Start the server
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+httpsServer.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 

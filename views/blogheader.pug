@@ -1,7 +1,7 @@
 header.bg-light
-  nav.navbar.navbar-expand-lg.navbar-light
+  nav.navbar.navbar-expand-md.navbar-light
     .container.justify-content-center
-      ul.navbar-nav
+      ul.navbar-nav.pl-3
         li.nav-item
           a.nav-link(href="/") Home
         li.nav-item
@@ -13,4 +13,4 @@ header.bg-light
             a.nav-link(href="signout") Logout
           else 
             a.nav-link(href="signin") Login
-  h1.text-center.mt-4 Influencer Blog
+  h1.text-center.mt-4= user ? `${user.displayName}'s` + ' Blog' : 'Influencer Blog'

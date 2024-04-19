@@ -2,7 +2,7 @@ doctype html
 html(lang="en")
   include bloghead.pug
     title Contact Us
-  body
+  body.d-flex.flex-column.vh-100
     include blogheader.pug
     main(id="contactPage")
       h1 Contact Us
@@ -15,4 +15,7 @@ html(lang="en")
         label(for="message") Message:
         textarea(id="message", name="message", rows="5", value=data.message, required)
         button(type="submit") Submit
+      //- Modal for blog submission form and other modals
+      include blogsubmodal.pug
     include blogfooter.pug
+    include blogscripts.pug

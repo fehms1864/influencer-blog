@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-  
   // Get the modal
   var modal = document.getElementById("myModal");
   var commentBox = document.getElementById("commentBox");
@@ -84,11 +83,17 @@ $(document).ready(function () {
   // Function to open the modal
   //move
   $("#openBlogFormBtn").click(function () {
-    $("#blogModal").modal("show");
+    //if the button is not disabled then show modal
+    if(!$(this).hasClass("disabled")){
+      $("#blogModal").modal("show");
+    }
   });
 
   $("#create-post").click(function () {
-    $("#blogModal").modal("show");
+    //if the button is not disabled then show modal
+    if(!$(this).hasClass("disabled")){
+      $("#blogModal").modal("show");
+    }
   });
   
 });
