@@ -6,9 +6,25 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var passport = require('passport');
 var Strategy = require('passport-local').Strategy;
+var RememberMeStrategy = require('passport-remember-me').Strategy;
+const utils = require('./routes/utils');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+
+var tokens = {}
+
+function consumeRememberMeToken(token, fn) {
+  var uid = tokens[token];
+  // invalidate the single-use token
+  delete tokens[token];
+  return fn(null, uid);
+}
+
+function saveRememberMeToken(token, uid, fn) {
+  tokens[token] = uid;
+  return fn();
+}
 
 passport.use(new Strategy(
   function(username, password, cb) {
@@ -19,6 +35,30 @@ passport.use(new Strategy(
       return cb(null, user);
     });
 }));
+
+passport.use(new RememberMeStrategy(
+  function(token, done) {
+    consumeRememberMeToken(token, function(err, uid) {
+      if (err) { return done(err); }
+      if (!uid) { return done(null, false); }
+      
+      findById(uid, function(err, user) {
+        if (err) { return done(err); }
+        if (!user) { return done(null, false); }
+        return done(null, user);
+      });
+    });
+  },
+  issueToken
+));
+
+function issueToken(user, done) {
+  var token = utils.randomString(64);
+  saveRememberMeToken(token, user.id, function(err) {
+    if (err) { return done(err); }
+    return done(null, token);
+  });
+}
 
 passport.serializeUser(function(user, cb) {
   cb(null, user.id);
@@ -41,27 +81,39 @@ app.use(require('morgan')('combined'));
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(require('express-session')({ secret: 'nobody knows', resave: false, saveUninitialized: false }));
 
+app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(passport.authenticate('remember-me'))
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 //app.use('/users', usersRouter);
 
 //Login and Logout
-app.post('/signin',
-  passport.authenticate('local', { failureRedirect: '/signin'}),
+app.post('/signin', 
+  passport.authenticate('local', { failureRedirect: '/login', failureFlash: true }),
+  function(req, res, next) {
+    if (!req.body.remember_me) { return next(); }
+
+    issueToken(req.user, function(err, token) {
+      if (err) { return next(err); }
+      res.cookie('remember_me', token, { path: '/', httpOnly: true, maxAge: 604800000 });
+      return next();
+    });
+  },
   function(req, res) {
     res.redirect('/');
-});
+  });
 
 app.get('/signout',
   function(req, res) {
+    // clear the remember me cookie when logging out
+    res.clearCookie('remember_me')
     req.logout();
     res.redirect('/');
 });
