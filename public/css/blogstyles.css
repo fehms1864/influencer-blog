@@ -47,6 +47,9 @@ nav a {
 nav a:hover {
   color: #d69f07;
 }
+#create-post {
+  cursor: pointer;
+}
 /* Article Styling */
 article {
   padding: 20px;

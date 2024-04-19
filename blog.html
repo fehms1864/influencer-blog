@@ -19,6 +19,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 
+    <!-- JavaScript links -->
+    <!-- JavaScript links -->
+    <!--<script src="public\js\blogscripts.js"></script> -->
+
 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -336,10 +340,10 @@
             background-color: rgba(0, 0, 0, 0.5);
             /* Semi-transparent background */
         }
-
-        /*Modal submission post*/
-        /* Ensure the modal content is above the backdrop */
     </style>
+</head>
+
+</style>
 </head>
 
 <body>
@@ -370,7 +374,9 @@
         <div class="row">
             <div class="main-blog-post col-md-12 text-center">
                 <div class="position-relative">
-                    <img src="public/images/images11.avif" alt="Mom and Daughter cooking" class="img-fluid">
+                    <img src="public/images/images11.avif" alt="Mom and Daughter cooking" class="img-fluid"
+                        data-author-name="Author 1" data-author-interests="Cooking"
+                        data-author-image-url="public\images\photo-1556040220-4096d522378d.avif">
                     <!-- Button positioned in the middle of the image -->
                     <button class="btn btn-warning position-absolute top-50 start-50 translate-middle">Click
                         Image</button>
@@ -390,7 +396,9 @@
             <div class="col-md-4">
                 <article class="blog-post">
                     <div class="position-relative">
-                        <img src="public/images/photo-1712221370157-922ea45f0605.avif" alt="Post Image 1" class="img-fluid">
+                        <img src="public/images/photo-1712221370157-922ea45f0605.avif" alt="Post Image 1"
+                            class="img-fluid" data-author-name="Author 1" data-author-interests="Travel"
+                            data-author-image-url="public/images/imagesp9.avif">
                         <button class="btn btn-warning position-absolute top-50 start-50 translate-middle">Click
                             Image</button>
                     </div>
@@ -405,7 +413,9 @@
             <div class="col-md-4">
                 <article class="blog-post">
                     <div class="position-relative">
-                        <img src="public/images/image4.avif" alt="Post Image 2" class="img-fluid">
+                        <img src="public/images/image4.avif" alt="Post Image 2" class="img-fluid"
+                            data-author-name="Author 1" data-author-interests="Fashion"
+                            data-author-image-url="public\images\photo-1712371963079-6d3a77f70e50.avif">
                         <button class="btn btn-warning position-absolute top-50 start-50 translate-middle">Click
                             Image</button>
                     </div>
@@ -420,7 +430,9 @@
             <div class="col-md-4">
                 <article class="blog-post">
                     <div class="position-relative">
-                        <img src="public/images/imagesp10.avif" alt="Post Image 3" class="img-fluid">
+                        <img src="public\images\imagesp10.avif" alt="Post Image 3" class="img-fluid"
+                            data-author-name="Author 1" data-author-interests="Automobiles"
+                            data-author-image-url="public\images\photo-1626516912440-9ad2fa422978.avif">
                         <button class="btn btn-warning position-absolute top-50 start-50 translate-middle">Click
                             Image</button>
                     </div>
@@ -450,7 +462,7 @@
                     <div class="modal-body">
                         <form id="blogForm">
                             <div class="form-group">
-                                <label for="bloggerName">Your Name:</label>
+                                <label for="bloggerName">Blog Post Name:</label>
                                 <input type="text" class="form-control" id="bloggerName" required>
                             </div>
                             <div class="form-group">
@@ -512,7 +524,7 @@
             <p id="authorInterests">Cooking With Family</p>
             <div class="modal-footer clearfix">
                 <button id="followBtn">Follow Blogger</button>
-                <button id="submitPostBtn">Leave a comment</button>
+                <button id="submitPostBtn">Leave a comment</button> <!--class "submitPostBtn" may be the issue-->
             </div>
         </div>
     </div>
@@ -529,7 +541,6 @@
                 </div>
             </div>
         </div>
-
     </footer>
 
 
@@ -643,9 +654,13 @@
         });
     </script>
 
+
+
+
+
+
     <!-- Bootstrap JS (optional) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script
 </body>
-</html>
