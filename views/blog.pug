@@ -1,62 +1,57 @@
 doctype html
 html(lang="en")
-  head
-    include bloghead.pug
+  include bloghead.pug
   body
     include blogheader.pug
 
     //- Main Blog Post Section
     .container.mt-5
-      .row
-        .main-blog-post.col-md-12.text-center
-          .position-relative
-            img.img-fluid(src="images/images11.avif", alt="Mom and Daughter cooking", data-author-name="Maria", data-author-interests="Cooking", data-author-image-url="images/photo-1556040220-4096d522378d.avif")
-            //- Button positioned in the middle of the image
-            button.btn.btn-warning.position-absolute.top-50.start-50.translate-middle Click Image
+        .row
+            .main-blog-post.col-md-12.text-center
+                .position-relative
+                    img.img-fluid(src="images/images11.avif", alt="Mom and Daughter cooking", data-author-name="Maria", data-author-interests="Cooking", data-author-image-url="images/photo-1556040220-4096d522378d.avif")
+                    //- Button positioned in the middle of the image
+                    button.btn.btn-warning.position-absolute.top-50.start-50.translate-middle Click Image
 
     //- Smaller Blog Posts Section
     .container.mt-5
-      .row
-        .col-md-4
-          article.blog-post
-            .position-relative
-              img.img-fluid(src="images/photo-1712221370157-922ea45f0605.avif", alt="Post Image 1", data-author-name="Jordan", data-author-interests="Travel", data-author-image-url="images/imagesp9.avif")
-              button.btn.btn-warning.position-absolute.top-50.start-50.translate-middle Click Image
-            h3 Vacation 2024
-            p Our journey to this small village in Italy was a testament to the timeless allure of the Italian countryside and the enduring spirit of its people. As we bid arrivederci to the village and its warm embrace, we carried with us cherished memories and a newfound appreciation for the magic of Italy—a land where every moment is a celebration of life, love, and la dolce vita.
-            p Tuesday, April 11, 2024 | 10:05 AM
-        .col-md-4
-          article.blog-post
-            .position-relative
-              img.img-fluid(src="images/image4.avif", alt="Post Image 2", data-author-name="Amber", data-author-interests="Fashion", data-author-image-url="images/premium_photo-1665663927708-e3287b105c44.avif")
-              button.btn.btn-warning.position-absolute.top-50.start-50.translate-middle Click Image
-            h3 Comfort in my sneakers
-            p In a world where comfort is king, comfortable sneakers reign supreme. From their supportive designs to their stylish aesthetics, these sneakers are the ultimate footwear choice for anyone who values both style and comfort. So go ahead, lace up a pair of comfortable sneakers and step into a world of endless possibilities, where every step is a journey worth taking.
-            p Tuesday, April 11, 2024 | 1:39 PM
-        .col-md-4
-          article.blog-post
-            .position-relative
-              img.img-fluid(src="images/imagesp10.avif", alt="Post Image 3", data-author-name="Cody", data-author-interests="Cars", data-author-image-url="photo-1626516912440-9ad2fa422978.avif")
-              button.btn.btn-warning.position-absolute.top-50.start-50.translate-middle Click Image
-            h3 New Ride
-            p Step into the world of automotive elegance as we unveil the sheer beauty and sophistication of my brand new white car. From its sleek silhouette to its cutting-edge features, this vehicle is a testament to style, innovation, and pure driving pleasure.
-            p Friday, April 15, 2024 | 12:10 PM
+        .row
+            .col-md-4
+                article.blog-post
+                    .position-relative
+                        img.img-fluid(src="images/photo-1712221370157-922ea45f0605.avif", alt="Post Image 1", data-author-name="Jordan", data-author-interests="Travel", data-author-image-url="images/imagesp9.avif")
+                        button.btn.btn-warning.position-absolute.top-50.start-50.translate-middle Click Image
+                    h3 Vacation 2024
+                    p Our journey to this small village in Italy was a testament to the timeless allure of the Italian countryside and the enduring spirit of its people. As we bid arrivederci to the village and its warm embrace, we carried with us cherished memories and a newfound appreciation for the magic of Italy—a land where every moment is a celebration of life, love, and la dolce vita.
+                    p Tuesday, April 11, 2024 | 10:05 AM
+            .col-md-4
+                article.blog-post
+                    .position-relative
+                        img.img-fluid(src="images/image4.avif", alt="Post Image 2", data-author-name="Amber", data-author-interests="Fashion", data-author-image-url="images/premium_photo-1665663927708-e3287b105c44.avif")
+                        button.btn.btn-warning.position-absolute.top-50.start-50.translate-middle Click Image
+                    h3 Comfort in my sneakers
+                    p In a world where comfort is king, comfortable sneakers reign supreme. From their supportive designs to their stylish aesthetics, these sneakers are the ultimate footwear choice for anyone who values both style and comfort. So go ahead, lace up a pair of comfortable sneakers and step into a world of endless possibilities, where every step is a journey worth taking.
+                    p Tuesday, April 11, 2024 | 1:39 PM
+            .col-md-4
+                article.blog-post
+                    .position-relative
+                        img.img-fluid(src="images/imagesp10.avif", alt="Post Image 3", data-author-name="Cody", data-author-interests="Cars", data-author-image-url="photo-1626516912440-9ad2fa422978.avif")
+                        button.btn.btn-warning.position-absolute.top-50.start-50.translate-middle Click Image
+                    h3 New Ride
+                    p Step into the world of automotive elegance as we unveil the sheer beauty and sophistication of my brand new white car. From its sleek silhouette to its cutting-edge features, this vehicle is a testament to style, innovation, and pure driving pleasure.
+                    p Friday, April 15, 2024 | 12:10 PM
+    
+    .container.mt-5
+        .text-center
+            if user
+                //- Button to open the modal
+                button.btn.btn-warning#openBlogFormBtn(type='button') Submit New Blog Post
+            else 
+                //- Button to open the modal disabled
+                button.btn.btn-secondary.disabled#openBlogFormBtn(type='button') Submit New Blog Post
+        //- Modal for blog submission form and other modals
+        include blogsubmodal.pug
 
-    // Blog Submission Form
-    #blogFormContainer.container.mt-5(style="display: none;")
-      form(action="/submit-blog", method="post")
-        .form-group
-          label(for="blogContent") Blog Content:
-          textarea#blogContent.form-control(rows="10", name="blogContent")
-        button.btn.btn-warning(type="submit") Submit New Blog
-
+    
     include blogfooter.pug
-
-    // Include modal here
-    include blogsubmodal.pug
-
-    // Include JavaScript files
-    script(src="https://code.jquery.com/jquery-3.5.1.min.js")
-    script(src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js")
-    script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js")
-    script(src="/js/blogscripts.js")
+    include blogscripts.pug
