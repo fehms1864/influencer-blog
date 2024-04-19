@@ -40,19 +40,18 @@ html(lang="en")
                     h3 New Ride
                     p Step into the world of automotive elegance as we unveil the sheer beauty and sophistication of my brand new white car. From its sleek silhouette to its cutting-edge features, this vehicle is a testament to style, innovation, and pure driving pleasure.
                     p Friday, April 15, 2024 | 12:10 PM
+    
+    .container.mt-5
+        .text-center
+            if user
+                //- Button to open the modal
+                button.btn.btn-warning#openBlogFormBtn(type='button') Submit New Blog Post
+            else 
+                //- Button to open the modal disabled
+                button.btn.btn-secondary.disabled#openBlogFormBtn(type='button') Submit New Blog Post
+        //- Modal for blog submission form and other modals
+        include blogsubmodal.pug
 
-    // Blog Submission Form
-    #blogFormContainer.container.mt-5(style="display: none;")
-      form(action="/submit-blog", method="post")
-        .form-group
-          label(for="blogContent") Blog Content:
-          textarea#blogContent.form-control(rows="10", name="blogContent")
-        button.btn.btn-warning(type="submit") Submit New Blog
-
+    
     include blogfooter.pug
     include blogscripts.pug
-    // Include modal here
-    include blogsubmodal.pug
-    script(src="js/blogscripts.js")
-    
-    

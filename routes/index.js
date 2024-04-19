@@ -8,6 +8,10 @@ const { contactUsSchema } = require('../models/Contact');
 
 const Contact = mongoose.model('Contact', contactUsSchema);
 
+const { blogPostDetailsSchema } = require('../models/BlogPostDetails');
+
+const BlogPostDetails = mongoose.model('BlogPostDetails', blogPostDetailsSchema);
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('blog', { title: 'Influence Blog', user: req.user });
@@ -38,20 +42,13 @@ router.post('/submit',
       .withMessage('Please enter your message'),
   ],
   async (req, res) => {
-    //console.log(req.body);
+
     const errors = validationResult(req);
-    console.log('req', req);
-    console.log('errors',errors);
 
     if (errors.isEmpty()) {
       const contactUs = new Contact(req.body);
       contactUs.save()
         .then(() => {
-          // res.render('thankyou', {
-          //   title: 'Thank you Page',
-          //   errors: errors.array(),
-          //   data: req.body
-          // });
           res.send('Form submitted successfully!');
         })
         .catch((err) => {
@@ -60,12 +57,41 @@ router.post('/submit',
         });
     } else {
       res.send('Sorryyyy');
-      // res.render('register', {
-      //   title: 'Registration form',
-      //   errors: errors.array(),
-      //   data: req.body,
-      // });
     }
-  });
+  }
+);
+
+router.post('/submit-blog',
+  [
+    check('blogImage')
+      .isLength({ min: 3 })
+      .withMessage('Please enter an image url'),
+    check('blogTitle')
+      .isLength({ min: 1 })
+      .withMessage('Please enter a blog title'),
+    check('blogMessage')
+      .isLength({ min: 3 })
+      .withMessage('Please enter a blog message'),
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    console.log('req is here', req.body);
+    console.log('errors',errors);
+
+    if (errors.isEmpty()) {
+      const details = new BlogPostDetails(req.body);
+      details.save()
+        .then(() => {
+          res.send('Form submitted successfully!');
+        })
+        .catch((err) => {
+          console.log(err);
+          res.send('Sorry! Something went wrong while saving blog!');
+        });
+    } else {
+      res.send('Sorryyyy blog was not saved');
+    }
+  }
+);
 
 module.exports = router;

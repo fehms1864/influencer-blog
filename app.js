@@ -83,9 +83,32 @@ app.use(function(err, req, res, next) {
 });
 
 //MONGOOSE CONNECTION
-mongoose.connect('mongodb://localhost:27017/contactUs', {
+const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true
+};
+
+// Connect to the contactUs database
+mongoose.connect('mongodb://localhost:27017/contactUs', options)
+  .then(() => {
+    console.log('Connected to the contactUs database');
+  })
+  .catch(error => {
+    console.error('Error connecting to the contactUs database:', error);
+  }
+);
+
+// Now connect to the blogPostDetails database
+const blogPostDetailsConnection = mongoose.createConnection('mongodb://localhost:27017/blogPostDetails', options);
+
+// Event listeners to log if connected successfully
+blogPostDetailsConnection.on('connected', () => {
+  console.log('Connected to the blogPostDetails database');
+});
+
+// Event listeners to log error if not connected
+blogPostDetailsConnection.on('error', error => {
+  console.error('Error connecting to the blogPostDetails database:', error);
 });
 
 mongoose.connection
@@ -97,6 +120,7 @@ mongoose.connection
   });
 
 require('./models/Contact');
+require('./models/BlogPostDetails');
 
 // Start the server
 const PORT = process.env.PORT || 3000;
