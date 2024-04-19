@@ -1,7 +1,7 @@
 doctype html
 html(lang="en")
   include bloghead.pug
-  body
+  body.d-flex.flex-column.vh-100
     include blogheader.pug
 
     //- Main Blog Post Section
@@ -10,7 +10,7 @@ html(lang="en")
             .main-blog-post.col-md-12.text-center
                 .position-relative
                     img.img-fluid(src="images/images11.avif", alt="Mom and Daughter cooking", data-author-name="Maria", data-author-interests="Cooking", data-author-image-url="images/photo-1556040220-4096d522378d.avif", class="image-hover")
-                    //- Button positioned in the middle of the image
+                    h2 Family Cooking Time
                     
 
     //- Smaller Blog Posts Section
@@ -40,14 +40,14 @@ html(lang="en")
                     p Step into the world of automotive elegance as we unveil the sheer beauty and sophistication of my brand new white car. From its sleek silhouette to its cutting-edge features, this vehicle is a testament to style, innovation, and pure driving pleasure.
                     p Friday, April 15, 2024 | 12:10 PM
     
-    .container.mt-5
+    .container.mt-5.mb-5
         .text-center
             if user
                 //- Button to open the modal
                 button.btn.btn-warning#openBlogFormBtn(type='button') Submit New Blog Post
             else 
                 //- Button to open the modal disabled
-                button.btn.btn-secondary.disabled#openBlogFormBtn(type='button') Submit New Blog Post
+                button.btn.btn-secondary.disabled#openBlogFormBtn(type='button', disabled) Submit New Blog Post
         //- Modal for blog submission form and other modals
         include blogsubmodal.pug
 
