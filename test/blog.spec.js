@@ -45,11 +45,11 @@ describe('blogScript', () => {
 
     // Wait for the DOM to update
     setTimeout(() => {
-      expect(modal.style.display).toBe("");
-      done();
-    }, 2000); // timeout value 
+      expect(modal.style.display).toBe(""); // Check if the modal is still displayed
+      done(); // Signal that the test is done
+    }, 2000); // Wait this time before checking 
   }, 20000); // Adjust the test timeout value as needed
-  
+
 //Test clicking on the follow button opens Instagram link
   test('clicking on follow button opens Instagram link', (done) => {
     const followButton = $("#followBtn");
@@ -58,8 +58,8 @@ describe('blogScript', () => {
     // Wait for the DOM to update
     setTimeout(() => {
       expect(window.open).toHaveBeenCalledWith('https://www.instagram.com', '_blank');
-      done();
-    }, 2000); //  timeout value 
+      done(); // Signal that the test is done
+    }, 2000); // Wait this time before checking
   }, 5000); // Adjust the test timeout value as needed
 
 //Test clicking on the close button closes the modal 
@@ -70,26 +70,26 @@ describe('blogScript', () => {
 
     // Wait for the DOM to update
     setTimeout(() => {
-      expect(modal.style.display).toBe("none");
-      expect(commentBox.style.display).toBe("none");
-      done();
-    }, 2000); //  timeout value 
+      expect(modal.style.display).toBe("none"); // Check if the modal is still displayed
+      expect(commentBox.style.display).toBe("none"); // Check if the comment box is hidden
+      done(); // Signal that the test is done
+    }, 2000); // Wait this time before checking
   }, 9000); // Adjust the test timeout value as needed
 
 //Test clicking out side the modal closes it 
   test('clicking outside the modal closes it', (done) => {
-    modal.style.display = "block";
+    modal.style.display = "block"; //Display modal
     const outsideModal = document.createElement("div");
     outsideModal.setAttribute("id", "outsideModal");
     document.body.appendChild(outsideModal);
-    window.onclick({ target: outsideModal });
+    window.onclick({ target: outsideModal }); // Simulate a click outside the modal
 
     // Wait for the DOM to update
     setTimeout(() => {
-      expect(modal.style.display).toBe("block");
-      expect(commentBox.style.display).toBe("none");
-      done();
-    }, 2000); //  timeout value 
+      expect(modal.style.display).toBe("block"); // Check if the modal is still displayed
+      expect(commentBox.style.display).toBe("none"); // Check if the comment box is hidden
+      done(); // Signal that the test is done
+    }, 2000); // Wait this time before checking
   }, 5000); // Adjust the test timeout value as needed
 });
   
