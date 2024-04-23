@@ -8,7 +8,7 @@
             //- Modal Body
             .modal-body
                 -data = data || {}
-                form(action="/submit-blog" method="POST")#blogForm
+                form(action="/submit-blog" method="POST", enctype='multipart/form-data')#blogForm
                     .form-group
                         label(for='bloggerName') Blog Post Name:
                         input(type='text', required, value=data.blogTitle, name='blogTitle').form-control#bloggerName
@@ -17,7 +17,7 @@
                         textarea(rows='5', required, name='blogMessage', value=data.blogMessage)#blogContent.form-control
                     .form-group
                         label(for='imageUpload') Image Upload:
-                        input(type='file', multiple, name='blogImage', value=data.blogImage).form-control-file#imageUpload
+                        input(type='file', required, name='blogImage').form-control-file#imageUpload
                     //- Modal Footer
                     .modal-footer
                         button.btn.btn-warning(type='button', data-dismiss='modal') Close

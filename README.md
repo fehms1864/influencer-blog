@@ -26,3 +26,8 @@ All developers will be contributing to this project using the following conventi
 - once "dev-branch" has an important feature completed, then team lead will merge code from "dev-branch" into "main"
 
 The goal is to always have customer ready code in main from which the site will operate.
+
+## Commands to generate css and start the project
+
+lessc public/less/blogstyles.less public/css/blogstyles.css
+node app

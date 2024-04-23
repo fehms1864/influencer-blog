@@ -81,6 +81,7 @@ article footer a:hover {
   display: block;
   margin: 0 auto;
   border-radius: 8px;
+  cursor: pointer;
 }
 .main-blog-post .btn-warning:hover {
   background-color: #d8d5cf;
@@ -120,6 +121,15 @@ article footer a:hover {
   /* Add border radius for a smoother look */
 }
 /* Smaller Blog Posts Container */
+.blog-post p {
+  text-align: left;
+}
+.blog-post div img {
+  width: 100%;
+  height: 25rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
 .smaller-posts {
   display: flex;
   justify-content: space-between;
@@ -173,6 +183,10 @@ footer {
   border: 1px solid #888;
   width: 80%;
 }
+#myModal .modal-content,
+#commentBox .modal-content {
+  width: 60%;
+}
 /* Close Button Styles */
 .close {
   color: #aaa;
@@ -191,6 +205,7 @@ footer {
   max-width: 200px;
   max-height: 200px;
   margin-bottom: 10px;
+  align-self: center;
 }
 #authorName {
   color: #333;

@@ -6,8 +6,8 @@ const blogPostDetailsSchema = new mongoose.Schema({
     trim: true,
   },
   blogImage: {
-    type: String,
-    trim: true
+    data: Buffer, // Store image data as a Buffer
+    contentType: String, // Store content type (e.g., 'image/png', 'image/jpeg')
   },
   blogTitle: {
     type: String,
@@ -18,7 +18,7 @@ const blogPostDetailsSchema = new mongoose.Schema({
     trim: true,
   },
   date: {
-    type: Date,
+    type: String,
     trim: true,
   }
 });
