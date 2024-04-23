@@ -63,25 +63,25 @@ $(document).ready(function () {
     //  handle the form submission here (e.g., send the comment data to a server)
     // Get the comment data from the form
     var commentData = {
-      name: $("#commentName").val(), // Assuming there's an input field with id "commentName" for the commenter's name
-      comment: $("#commentContent").val() // Assuming there's a textarea field with id "commentContent" for the comment content
+      name: $("#commentName").val(), 
+      comment: $("#commentContent").val() 
     };
 
-    // You can perform any additional validation or processing here
-
-    // For demonstration purposes, let's log the comment data to the console
+    
+   
+    // log the comment data to the console
     console.log("Comment Data:", commentData);
 
-    // After handling the form submission, you can close the comment box
+    // After handling the form submission, close the comment box
     commentBox.style.display = "none";
   });
 });
 
-//js for blog post submission//
+//JS for blog post submission//
 $(document).ready(function () {
 
   // Function to open the modal
-  //move
+  
   $("#openBlogFormBtn").click(function () {
     //if the button is not disabled then show modal
     if(!$(this).hasClass("disabled")){

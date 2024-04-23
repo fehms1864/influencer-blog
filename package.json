@@ -7,18 +7,20 @@
     "compile-pug": "pug views --out public",
     "compile-less": "lessc public/css/style.less public/css/style.css",
     "watch-pug": "pug -w views -o public",
-    "watch-less": "less-watch-compiler public/css/style.less public/css/style.css"
+    "watch-less": "less-watch-compiler public/css/style.less public/css/style.css",
+    "test": "jest"
   },
   "dependencies": {
     "body-parser": "^1.20.2",
     "connect-ensure-login": "^0.1.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
-    "express": "~4.16.1",
+    "express": "^4.19.2",
     "express-session": "^1.16.1",
     "express-validator": "^7.0.1",
     "http-errors": "~1.6.3",
-    "jade": "~1.11.0",
+    "jade": "^1.9.2",
+    "jquery": "^3.7.1",
     "less": "^3.12.2",
     "mongoose": "^8.3.1",
     "morgan": "~1.9.1",
@@ -27,5 +29,9 @@
     "passport-local": "^1.0.0",
     "passport-remember-me": "^0.0.1",
     "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jsdom": "^24.0.0"
   }
 }

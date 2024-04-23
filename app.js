@@ -1,20 +1,19 @@
-var createError = require('http-errors');
-var express = require('express');
-const mongoose = require('mongoose');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var passport = require('passport');
-var Strategy = require('passport-local').Strategy;
+var createError        = require('http-errors');
+var express            = require('express');
+const mongoose         = require('mongoose');
+var path               = require('path');
+var cookieParser       = require('cookie-parser');
+var logger             = require('morgan');
+var passport           = require('passport');
+var Strategy           = require('passport-local').Strategy;
 var RememberMeStrategy = require('passport-remember-me').Strategy;
-const utils = require('./routes/utils');
-const https = require('https');
-const fs = require('fs');
+const utils            = require('./routes/utils');
+const https            = require('https');
+const fs               = require('fs');
+var indexRouter        = require('./routes/index');
+var usersRouter        = require('./routes/users');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
-var tokens = {}
+var tokens             = {}
 
 function consumeRememberMeToken(token, fn) {
   var uid = tokens[token];
