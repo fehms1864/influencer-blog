@@ -45,7 +45,7 @@ nav a {
   text-decoration: none;
 }
 nav a:hover {
-  color: #d69f07;
+  color: #ec930c;
 }
 #create-post {
   cursor: pointer;
@@ -114,7 +114,7 @@ article footer a:hover {
   /* Initial transition properties */
 }
 .image-hover:hover {
-  box-shadow: 0 0 30px rgba(214, 159, 7, 0.5);
+  box-shadow: 0 0 30px #ec930c;
   /* Add a box shadow when hovered */
   border-radius: 10px;
   /* Add border radius for a smoother look */
@@ -198,7 +198,7 @@ footer {
   margin-bottom: 10px;
 }
 #authorInterests {
-  color: #666;
+  color: #6c757d;
   margin-bottom: 20px;
 }
 /* Follow Button Styles inside more about Author*/
