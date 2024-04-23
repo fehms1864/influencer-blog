@@ -611,13 +611,13 @@
                 //  handle the form submission here (e.g., send the comment data to a server)
                 // Get the comment data from the form
                 var commentData = {
-                    name: $("#commentName").val(), // Assuming there's an input field with id "commentName" for the commenter's name
-                    comment: $("#commentContent").val() // Assuming there's a textarea field with id "commentContent" for the comment content
+                    name: $("#commentName").val(), 
+                    comment: $("#commentContent").val() 
                 };
 
-                // You can perform any additional validation or processing here
+                
 
-                // For demonstration purposes, let's log the comment data to the console
+                //  let's log the comment data to the console
                 console.log("Comment Data:", commentData);
 
                 // After handling the form submission, you can close the comment box
@@ -639,7 +639,7 @@
                 var blogContent = $("#blogContentModal").val();
                 var images = $("#imageUploadModal")[0].files;
 
-                // Validate form data (e.g., check if required fields are filled)
+            
 
                 // Process image uploads (if any)
                 var formData = new FormData();
