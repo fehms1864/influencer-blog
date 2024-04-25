@@ -1,0 +1,15 @@
+header.bg-light
+  nav.navbar.navbar-expand-md.navbar-light.d-flex.flex-column.justify-content-center
+    ul.navbar-nav.pl-3
+      li.nav-item
+        a.nav-link(href="/") Home
+      li.nav-item
+        a.nav-link(id="create-post") Create Blog Post
+      li.nav-item
+        a.nav-link(href="contact") Contact
+      li.nav-item
+        if user
+          a.nav-link(href="signout") Logout
+        else 
+          a.nav-link(href="signin") Login
+  h1.text-center= user ? `${user.displayName}'s` + ' Blog' : 'Influencer Blog'

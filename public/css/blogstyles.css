@@ -1,0 +1,258 @@
+.wrapper-main {
+  width: 1000px;
+  margin: 0 auto;
+}
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+/* Header Styling */
+header {
+  background-color: #f4f4f4;
+  color: #333;
+  text-align: center;
+  padding: 0;
+}
+header h1 {
+  margin: 0;
+  padding: 2rem;
+  font-family: 'Oswald';
+  color: #ec930c;
+}
+h2 {
+  font-family: 'Arvo', sans-serif;
+  font-weight: bold;
+  color: #ec930c;
+}
+h3 {
+  font-family: 'Montserrat';
+  color: #ec930c;
+}
+/* Navigation Bar Styling */
+nav ul {
+  list-style: none;
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+}
+nav ul li {
+  margin: 0 20px;
+}
+nav a {
+  text-decoration: none;
+}
+nav a:hover {
+  color: #ec930c;
+}
+#create-post {
+  cursor: pointer;
+}
+/* Article Styling */
+article {
+  padding: 20px;
+  margin: 20px 0;
+}
+article section {
+  margin: 20px 0;
+}
+article footer {
+  font-style: italic;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+}
+article footer a {
+  color: #007bff;
+  text-decoration: none;
+}
+article footer a:hover {
+  text-decoration: underline;
+}
+/* Main Blog Post Styling */
+.main-blog-post {
+  margin: 20px auto;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+.main-blog-post img {
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.main-blog-post .btn-warning:hover {
+  background-color: #d8d5cf;
+  color: white;
+}
+.main-blog-post .position-relative {
+  position: relative;
+}
+.main-blog-post .position-absolute {
+  position: absolute;
+}
+.main-blog-post .top-50 {
+  top: 75%;
+}
+.main-blog-post .start-50 {
+  left: 50%;
+}
+.main-blog-post .translate-middle {
+  transform: translate(-50%, -50%);
+}
+.main-blog-post h2 {
+  margin-top: 0.5em;
+  text-align: center;
+}
+.image-hover {
+  box-shadow: 0 0 0 rgba(214, 159, 7, 0);
+  /* Initial box shadow */
+  border-radius: 0;
+  /* Initial border radius */
+  transition: box-shadow 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+  /* Initial transition properties */
+}
+.image-hover:hover {
+  box-shadow: 0 0 30px #ec930c;
+  /* Add a box shadow when hovered */
+  border-radius: 10px;
+  /* Add border radius for a smoother look */
+}
+/* Smaller Blog Posts Container */
+.blog-post p {
+  text-align: left;
+}
+.blog-post div img {
+  width: 100%;
+  height: 25rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+.smaller-posts {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+/* Smaller Blog Posts Styling */
+.smaller-posts article {
+  width: 30%;
+  padding: 15px;
+  border: 1px solid #eee;
+  margin-bottom: 20px;
+}
+.smaller-posts article img {
+  width: 100%;
+  height: auto;
+}
+.smaller-posts article h3 {
+  color: #007bff;
+}
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .smaller-posts article {
+    width: 100%;
+  }
+}
+/* Main Footer Styling */
+footer {
+  text-align: center;
+  padding: 20px 0;
+  background-color: #f4f4f4;
+  margin-top: 20px;
+}
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+/* Modal Content Styles */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+#myModal .modal-content,
+#commentBox .modal-content {
+  width: 60%;
+}
+/* Close Button Styles */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* Other Modal Element Styles */
+#authorImage {
+  max-width: 200px;
+  max-height: 200px;
+  margin-bottom: 10px;
+  align-self: center;
+}
+#authorName {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+#authorInterests {
+  color: #6c757d;
+  margin-bottom: 20px;
+}
+/* Follow Button Styles inside more about Author*/
+#followBtn,
+#submitPostBtn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  float: left;
+}
+/* Submit Post Button Styles */
+#submitPostBtn {
+  float: right;
+  margin-left: 10px;
+}
+/* Clearfix to ensure proper layout */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+#followBtn:hover,
+#submitPostBtn:hover {
+  background-color: #0056b3;
+}
+/* Comment Box Styles */
+#commentBox {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+/*Modal submission post*/
+/* Ensure the modal content is above the backdrop */

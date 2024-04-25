@@ -1,0 +1,20 @@
+doctype html
+html(lang="en")
+  include bloghead.pug
+  body.d-flex.flex-column.vh-100
+    include blogheader.pug
+    main(id="contactPage")
+      h1 Contact Us
+      -data = data || {}
+      form(id="contactForm" action="/submit" method="POST")
+        label(for="name") Name:
+        input(type="text", id="name", name="name", value=data.name, required)
+        label(for="email") Email:
+        input(type="email", id="email", name="email", value=data.email, required)
+        label(for="message") Message:
+        textarea(id="message", name="message", rows="5", value=data.message, required)
+        button(type="submit") Submit
+      //- Modal for blog submission form and other modals
+      include blogsubmodal.pug
+    include blogfooter.pug
+    include blogscripts.pug

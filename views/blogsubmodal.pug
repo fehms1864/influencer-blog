@@ -1,0 +1,48 @@
+#blogModal.modal
+    .modal-dialog
+        .modal-content
+            //- Modal Header
+            .modal-header
+                h4.modal-title Submit New Blog Post
+                button.close(type='button', data-dismiss='modal') &times;
+            //- Modal Body
+            .modal-body
+                -data = data || {}
+                form(action="/submit-blog" method="POST", enctype='multipart/form-data')#blogForm
+                    .form-group
+                        label(for='bloggerName') Blog Post Name:
+                        input(type='text', required, value=data.blogTitle, name='blogTitle').form-control#bloggerName
+                    .form-group
+                        label(for='blogContent') Blog Content:
+                        textarea(rows='5', required, name='blogMessage', value=data.blogMessage)#blogContent.form-control
+                    .form-group
+                        label(for='imageUpload') Image Upload:
+                        input(type='file', required, name='blogImage').form-control-file#imageUpload
+                    //- Modal Footer
+                    .modal-footer
+                        button.btn.btn-warning(type='button', data-dismiss='modal') Close
+                        button.btn.btn-warning#submitBlogBtn(type='submit') Submit Post
+
+          
+#commentBox.modal
+  .modal-content
+    span.close &times;
+    h2 Leave a Comment
+    form#commentForm
+      .form-group
+        label(for='commentName') Your Name:
+        input.form-control(type='text', id='commentName', required)
+      .form-group
+        label(for='commentContent') Your Comment:
+        textarea.form-control(id='commentContent', rows='5', required)
+      button.btn.btn-warning(type='submit') Submit
+
+#myModal.modal
+  .modal-content
+    span.close &times;
+    img#authorImage(src='#', alt='Author Image')
+    h2#authorName Maria Dawn
+    p#authorInterests Cooking With Family
+    .modal-footer.clearfix
+      button#followBtn Follow Blogger
+      button#submitPostBtn Leave a comment

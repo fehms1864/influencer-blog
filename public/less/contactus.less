@@ -1,0 +1,53 @@
+// Variables
+
+
+// Colors
+@primary-color: #007bff;
+@warning-color: rgb(236, 147, 12);
+@info-color: #0056b3;
+
+
+
+
+
+#contactPage {
+    margin-top: 3rem;
+    h1 {
+        text-align: center;
+        color: @warning-color;
+    }
+
+    #contactForm {
+        max-width: 500px;
+        margin: 0 auto;
+    
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+    
+        input,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    
+        button {
+            padding: 10px 20px;
+            background-color: @primary-color;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 3rem;
+            width: 100%;
+        }
+        
+        button:hover {
+            background-color: @info-color;
+        }
+    }
+}

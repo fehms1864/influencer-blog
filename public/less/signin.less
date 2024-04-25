@@ -1,0 +1,25 @@
+@top-offset: 100px;
+@font-weight-bold: bolder;
+
+#sign-in {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: @top-offset;
+}
+
+label, p {
+    color: gray;
+}
+h2, p {
+    text-align: center;
+}
+h2 {
+    font-weight: @font-weight-bold;
+}
+
+input[type="submit"] {
+    margin-top: 20px;
+}
