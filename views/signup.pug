@@ -1,0 +1,55 @@
+doctype html
+html(lang="en")
+  include bloghead.pug
+  body.d-flex.flex-column.vh-100
+    #sign-in.container
+        a(href="/signin") Go Back
+        h2 Sign up
+        p Sign up by entering your username, password, full name, and email
+        form(action="/signup" method="post" class="form-registration")
+            label(for="username") Username
+            input(
+                type="text"
+                id="username"
+                placeholder="Enter name here"
+                name="username"
+                class="form-control"
+                required
+            )
+
+            label(for="password") Password
+            input(
+                type="password"
+                id="password"
+                placeholder="Enter password here"
+                name="password"
+                class="form-control"
+                required
+            )
+
+            label(for="displayName") Full Name
+            input(
+                type="text"
+                id="displayName"
+                placeholder="Enter full name here"
+                name="displayName"
+                class="form-control"
+                required
+            )
+
+            label(for="email") Email
+            input(
+                type="email"
+                id="email"
+                placeholder="Enter email here"
+                name="email"
+                class="form-control"
+                required
+            )
+
+            input(
+                type="submit" 
+                value="Sign Up"
+                class="btn btn-lg btn-dark btn-block"
+            )
+    include blogfooter.pug

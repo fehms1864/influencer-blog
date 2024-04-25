@@ -1,7 +1,7 @@
 var records = [
-  { id: 1, username: 'mschultz', password: 'password', displayName: 'Maxon Schultz', emails: [ { value: 'mschultz@example.com' } ] },
-  { id: 2, username: 'cpittman', password: '1234', displayName: 'Crystal Pittman', emails: [ { value: 'cpittman@example.com' } ] },
-  { id: 3, username: 'fhasan', password: 'birthday', displayName: 'Fehmina Hasan', emails: [ { value: 'fhasan@example.com' } ] },
+  { id: 1, username: 'mschultz', password: 'password', displayName: 'Maxon Schultz', email: 'mschultz@example.com' },
+  { id: 2, username: 'cpittman', password: '1234', displayName: 'Crystal Pittman', email: 'cpittman@example.com' },
+  { id: 3, username: 'fhasan', password: 'birthday', displayName: 'Fehmina Hasan', email: 'fhasan@example.com' },
 ];
 
 exports.findById = function(id, cb) {
@@ -24,6 +24,14 @@ exports.findByUsername = function(username, cb) {
       }
     }
     return cb(null, null);
+  });
+}
+
+exports.addUser = function(newUser, cb) {
+  process.nextTick(function() {
+    newUser.id = records.length + 1;
+    records.push(newUser);
+    cb(null, newUser);
   });
 }
 
