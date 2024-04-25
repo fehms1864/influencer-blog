@@ -10,7 +10,14 @@ Team members:
 This project is aimed for influencers to post their thoughts and keep an online blog in order to keep a record of it as well as have subscribed users the access to log in and view the blogs
 
 ## Tech Stack
-TBD
+- HTML & CSS & Pug
+- Node / NPM
+- Bootstrap
+- LESS
+- Javascript
+- Express
+- Mongodb & Mongoose
+- Jest
 
 ## Development 
 We are a team of 3 developers working on creating a fully functional blog site that targets the following functionality and features:
@@ -27,7 +34,8 @@ All developers will be contributing to this project using the following conventi
 
 The goal is to always have customer ready code in main from which the site will operate.
 
-## Commands to generate css and start the project
+## Commands to generate css, start db server and start the project
 
-lessc public/less/blogstyles.less public/css/blogstyles.css
-node app
+- lessc public/less/blogstyles.less public/css/blogstyles.css
+- brew services start mongodb-community
+- node app
