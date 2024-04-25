@@ -1,18 +1,19 @@
-var createError = require('http-errors');
-var express = require('express');
-const mongoose = require('mongoose');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var passport = require('passport');
-var Strategy = require('passport-local').Strategy;
+var createError        = require('http-errors');
+var express            = require('express');
+const mongoose         = require('mongoose');
+var path               = require('path');
+var cookieParser       = require('cookie-parser');
+var logger             = require('morgan');
+var passport           = require('passport');
+var Strategy           = require('passport-local').Strategy;
 var RememberMeStrategy = require('passport-remember-me').Strategy;
-const utils = require('./routes/utils');
+const utils            = require('./routes/utils');
+const https            = require('https');
+const fs               = require('fs');
+var indexRouter        = require('./routes/index');
+var usersRouter        = require('./routes/users');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
-var tokens = {}
+var tokens             = {}
 
 function consumeRememberMeToken(token, fn) {
   var uid = tokens[token];
@@ -72,6 +73,11 @@ passport.deserializeUser(function(id, cb) {
 
 var app = express();
 
+// Load SSL certificate and key
+const privateKey = fs.readFileSync('./server.key', 'utf8');
+const certificate = fs.readFileSync('./server.cert', 'utf8');
+const credentials = { key: privateKey, cert: certificate };
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -91,7 +97,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-//app.use('/users', usersRouter);
 
 //Login and Logout
 app.post('/signin', 
@@ -160,27 +165,14 @@ const options = {
 };
 
 // Connect to the contactUs database
-mongoose.connect('mongodb://localhost:27017/contactUs', options)
+mongoose.connect('mongodb://localhost:27017/BlogDatabase', options)
   .then(() => {
-    console.log('Connected to the contactUs database');
+    console.log('Connected to the BlogDatabase');
   })
   .catch(error => {
-    console.error('Error connecting to the contactUs database:', error);
+    console.error('Error connecting to the BlogDatabase:', error);
   }
 );
-
-// Now connect to the blogPostDetails database
-const blogPostDetailsConnection = mongoose.createConnection('mongodb://localhost:27017/blogPostDetails', options);
-
-// Event listeners to log if connected successfully
-blogPostDetailsConnection.on('connected', () => {
-  console.log('Connected to the blogPostDetails database');
-});
-
-// Event listeners to log error if not connected
-blogPostDetailsConnection.on('error', error => {
-  console.error('Error connecting to the blogPostDetails database:', error);
-});
 
 mongoose.connection
   .on('open', () => {
@@ -193,9 +185,12 @@ mongoose.connection
 require('./models/Contact');
 require('./models/BlogPostDetails');
 
+// Create HTTPS server
+const httpsServer = https.createServer(credentials, app);
+
 // Start the server
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+httpsServer.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 

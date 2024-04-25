@@ -3,6 +3,7 @@
 }
 #contactPage h1 {
   text-align: center;
+  color: #ec930c;
 }
 #contactPage #contactForm {
   max-width: 500px;
@@ -27,6 +28,8 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-bottom: 3rem;
+  width: 100%;
 }
 #contactPage #contactForm button:hover {
   background-color: #0056b3;

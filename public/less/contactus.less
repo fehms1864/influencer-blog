@@ -1,7 +1,20 @@
+// Variables
+
+
+// Colors
+@primary-color: #007bff;
+@warning-color: rgb(236, 147, 12);
+@info-color: #0056b3;
+
+
+
+
+
 #contactPage {
     margin-top: 3rem;
     h1 {
         text-align: center;
+        color: @warning-color;
     }
 
     #contactForm {
@@ -24,15 +37,17 @@
     
         button {
             padding: 10px 20px;
-            background-color: #007bff;
+            background-color: @primary-color;
             color: #fff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin-bottom: 3rem;
+            width: 100%;
         }
         
         button:hover {
-            background-color: #0056b3;
+            background-color: @info-color;
         }
     }
 }

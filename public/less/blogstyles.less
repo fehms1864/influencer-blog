@@ -1,4 +1,17 @@
+// Variables
 @mainWidth: 1000px;
+
+// Colors
+@primary-color: #007bff;
+@secondary-color: #6c757d;
+@warning-color: rgb(236, 147, 12);
+@info-color: #0056b3;
+@light-color: #f4f4f4;
+@dark-color: #333;
+
+// Fonts
+@font-family-base: Arial, sans-serif;
+
 
 .wrapper-main {
     width: @mainWidth;
@@ -6,17 +19,17 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: @font-family-base;
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    color: #333;
+    color: @dark-color;
 }
 
 /* Header Styling */
 header {
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: @light-color;
+    color: @dark-color;
     text-align: center;
     padding: 0;
 }
@@ -25,18 +38,18 @@ header h1 {
     margin: 0;
     padding: 2rem;
     font-family: 'Oswald';
-    color: rgb(236, 147, 12);
+    color: @warning-color;
 }
 
 h2 {
     font-family: 'Arvo', sans-serif;
     font-weight: bold;
-    color: rgb(236, 147, 12);
+    color: @warning-color;
 }
 
 h3 {
     font-family: 'Montserrat';
-    color: rgb(236, 147, 12);
+    color: @warning-color;
 }
 
 /* Navigation Bar Styling */
@@ -56,7 +69,7 @@ nav a {
 }
 
 nav a:hover {
-    color: rgb(214, 159, 7);
+    color: @warning-color;
 }
 
 #create-post {
@@ -80,7 +93,7 @@ article footer {
 }
 
 article footer a {
-    color: #007bff;
+    color: @primary-color;
     text-decoration: none;
 }
 
@@ -99,7 +112,9 @@ article footer a:hover {
         display: block;
         margin: 0 auto;
         border-radius: 8px;
+        cursor: pointer;
     }
+    
 
     .btn-warning:hover {
         background-color: rgb(216, 213, 207);
@@ -128,12 +143,37 @@ article footer a:hover {
 
     h2 {
         margin-top: 0.5em;
-        color: #007bff;
         text-align: center;
     }
 }
+//hover image/box shadow
+.image-hover {
+    box-shadow: 0 0 0 rgba(214, 159, 7, 0); /* Initial box shadow */
+    border-radius: 0; /* Initial border radius */
+    transition: box-shadow 0.3s ease-in-out, border-radius 0.3s ease-in-out; /* Initial transition properties */
+
+    &:hover {
+        box-shadow: 0 0 30px @warning-color; /* Add a box shadow when hovered */
+        border-radius: 10px; /* Add border radius for a smoother look */
+    }
+}
+
 
 /* Smaller Blog Posts Container */
+.blog-post {
+    p {
+        text-align: left;
+    }
+    div {
+        img {
+            width: 100%;
+            height: 25rem;
+            cursor: pointer;
+            margin-bottom: 1rem;
+        }
+    }
+}
+
 .smaller-posts {
     display: flex;
     justify-content: space-between;
@@ -154,7 +194,7 @@ article footer a:hover {
     }
 
     h3 {
-        color: #007bff;
+        color: @primary-color;
     }
 }
 
@@ -169,7 +209,7 @@ article footer a:hover {
 footer {
     text-align: center;
     padding: 20px 0;
-    background-color: #f4f4f4;
+    background-color: @light-color;
     margin-top: 20px;
 }
 
@@ -195,6 +235,12 @@ footer {
     width: 80%;
 }
 
+#myModal, #commentBox {
+    .modal-content {
+        width: 60%;
+    }
+}
+
 /* Close Button Styles */
 .close {
     color: #aaa;
@@ -215,23 +261,24 @@ footer {
     max-width: 200px;
     max-height: 200px;
     margin-bottom: 10px;
+    align-self: center;
 }
 
 #authorName {
-    color: #333;
+    color: @dark-color;
     font-size: 24px;
     margin-bottom: 10px;
 }
 
 #authorInterests {
-    color: #666;
+    color: @secondary-color;
     margin-bottom: 20px;
 }
 
 /* Follow Button Styles inside more about Author*/
 #followBtn,
 #submitPostBtn {
-    background-color: #007bff;
+    background-color: @primary-color;
     color: #fff;
     border: none;
     padding: 8px 16px;
@@ -255,7 +302,7 @@ footer {
 
 #followBtn:hover,
 #submitPostBtn:hover {
-    background-color: #0056b3;
+    background-color: @info-color;
 }
 
 /* Comment Box Styles */

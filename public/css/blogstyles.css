@@ -45,7 +45,7 @@ nav a {
   text-decoration: none;
 }
 nav a:hover {
-  color: #d69f07;
+  color: #ec930c;
 }
 #create-post {
   cursor: pointer;
@@ -81,6 +81,7 @@ article footer a:hover {
   display: block;
   margin: 0 auto;
   border-radius: 8px;
+  cursor: pointer;
 }
 .main-blog-post .btn-warning:hover {
   background-color: #d8d5cf;
@@ -103,10 +104,32 @@ article footer a:hover {
 }
 .main-blog-post h2 {
   margin-top: 0.5em;
-  color: #007bff;
   text-align: center;
 }
+.image-hover {
+  box-shadow: 0 0 0 rgba(214, 159, 7, 0);
+  /* Initial box shadow */
+  border-radius: 0;
+  /* Initial border radius */
+  transition: box-shadow 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+  /* Initial transition properties */
+}
+.image-hover:hover {
+  box-shadow: 0 0 30px #ec930c;
+  /* Add a box shadow when hovered */
+  border-radius: 10px;
+  /* Add border radius for a smoother look */
+}
 /* Smaller Blog Posts Container */
+.blog-post p {
+  text-align: left;
+}
+.blog-post div img {
+  width: 100%;
+  height: 25rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
 .smaller-posts {
   display: flex;
   justify-content: space-between;
@@ -160,6 +183,10 @@ footer {
   border: 1px solid #888;
   width: 80%;
 }
+#myModal .modal-content,
+#commentBox .modal-content {
+  width: 60%;
+}
 /* Close Button Styles */
 .close {
   color: #aaa;
@@ -178,6 +205,7 @@ footer {
   max-width: 200px;
   max-height: 200px;
   margin-bottom: 10px;
+  align-self: center;
 }
 #authorName {
   color: #333;
@@ -185,7 +213,7 @@ footer {
   margin-bottom: 10px;
 }
 #authorInterests {
-  color: #666;
+  color: #6c757d;
   margin-bottom: 20px;
 }
 /* Follow Button Styles inside more about Author*/
