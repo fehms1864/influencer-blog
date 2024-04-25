@@ -16,7 +16,6 @@ var tokens = {}
 
 function consumeRememberMeToken(token, fn) {
   var uid = tokens[token];
-  // invalidate the single-use token
   delete tokens[token];
   return fn(null, uid);
 }
@@ -42,7 +41,7 @@ passport.use(new RememberMeStrategy(
       if (err) { return done(err); }
       if (!uid) { return done(null, false); }
       
-      findById(uid, function(err, user) {
+      usersRouter.findById(uid, function(err, user) {
         if (err) { return done(err); }
         if (!user) { return done(null, false); }
         return done(null, user);
@@ -96,19 +95,39 @@ app.use('/', indexRouter);
 
 //Login and Logout
 app.post('/signin', 
-  passport.authenticate('local', { failureRedirect: '/login', failureFlash: true }),
+  passport.authenticate('local', { failureRedirect: '/signin', failureFlash: true }),
   function(req, res, next) {
     if (!req.body.remember_me) { return next(); }
 
     issueToken(req.user, function(err, token) {
       if (err) { return next(err); }
-      res.cookie('remember_me', token, { path: '/', httpOnly: true, maxAge: 604800000 });
+      res.cookie('remember_me', token, { path: '/', httpOnly: true, maxAge: 604800000 }); // 7 days
       return next();
     });
   },
   function(req, res) {
     res.redirect('/');
-  });
+});
+
+app.post('/signup', 
+  function(req, res, next) {
+    var newUser = {
+      id: 0,
+      username: req.body.username,
+      password: req.body.password,
+      displayName: req.body.displayName,
+      email: req.body.email
+    };
+    usersRouter.addUser(newUser, function(err, user) {
+      if (err) {
+        return res.render('error', { message: 'Error creating user' });
+      }
+      next();
+    });
+  },
+  function(req, res) {
+    res.redirect('/signin');
+});
 
 app.get('/signout',
   function(req, res) {

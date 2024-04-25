@@ -29,6 +29,11 @@ router.get('/signin', (req, res) => {
   res.render('signin', { title: 'Sign In' });
 });
 
+router.get('/signup', (req, res) => {
+  res.render('signup', { title: 'Sign Up' });
+});
+
+
 router.post('/submit',
   [
     check('name')
