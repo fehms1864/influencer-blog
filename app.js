@@ -146,27 +146,14 @@ const options = {
 };
 
 // Connect to the contactUs database
-mongoose.connect('mongodb://localhost:27017/contactUs', options)
+mongoose.connect('mongodb://localhost:27017/BlogDatabase', options)
   .then(() => {
-    console.log('Connected to the contactUs database');
+    console.log('Connected to the BlogDatabase');
   })
   .catch(error => {
-    console.error('Error connecting to the contactUs database:', error);
+    console.error('Error connecting to the BlogDatabase:', error);
   }
 );
-
-// Now connect to the blogPostDetails database
-const blogPostDetailsConnection = mongoose.createConnection('mongodb://localhost:27017/blogPostDetails', options);
-
-// Event listeners to log if connected successfully
-blogPostDetailsConnection.on('connected', () => {
-  console.log('Connected to the blogPostDetails database');
-});
-
-// Event listeners to log error if not connected
-blogPostDetailsConnection.on('error', error => {
-  console.error('Error connecting to the blogPostDetails database:', error);
-});
 
 mongoose.connection
   .on('open', () => {
