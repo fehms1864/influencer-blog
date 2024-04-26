@@ -1,5 +1,5 @@
 doctype html
-html
+html(lang="en")
   include bloghead.pug
   body.d-flex.flex-column.vh-100
     #sign-in.container
@@ -32,6 +32,8 @@ html
                 value="Log in"
                 class="btn btn-lg btn-dark btn-block"
             )
+
+            a(href="/signup") Sign Up
 
             div(class="form-check form-switch")
                 input(
