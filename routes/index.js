@@ -38,12 +38,22 @@ router.get('/', async function (req, res, next) {
 
   res.render('blog', { title: 'Influence Blog', user: req.user, blogs: blogsWithImageData });
 
-  console.log("blogs are: ", blogsWithImageData);
-  // res.render('blog', { title: 'Influence Blog', user: req.user });
 });
 
-router.get('/home', function (req, res, next) {
-  res.render('blog', { title: 'Influence Blog', user: req.user });
+router.get('/home', async function (req, res, next) {
+  const blogs = await BlogPostDetails.find()
+
+  // Convert the image data to base64 string and store it
+  const blogsWithImageData = (blogs.map((blog) => {
+    const base64ImageData = blog.blogImage && blog.blogImage.data ? blog.blogImage.data.toString('base64') : null;
+    return {
+      ...blog.toObject(), // Convert Mongoose document to plain JavaScript object
+      blogImageBase64: base64ImageData, // Add base64 image data to the blog post object
+    };
+  }));
+
+  res.render('blog', { title: 'Influence Blog', user: req.user, blogs: blogsWithImageData });
+
 });
 
 router.get('/contact', (req, res) => {
