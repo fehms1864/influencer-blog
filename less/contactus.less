@@ -16,6 +16,9 @@
         text-align: center;
         color: @warning-color;
     }
+    p {
+        text-align: center;
+    }
 
     #contactForm {
         max-width: 500px;
@@ -35,6 +38,11 @@
             border-radius: 5px;
         }
     
+        label:after {
+            content:" *";
+            color: red;
+        }
+
         button {
             padding: 10px 20px;
             background-color: @primary-color;

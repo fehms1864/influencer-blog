@@ -1,5 +1,6 @@
-$(document).ready(function () {
+$(document).ready(function () { 
 
+  $('[data-toggle="tooltip"]').tooltip();
   // Get the modal
   var modal = document.getElementById("myModal");
   var commentBox = document.getElementById("commentBox");
@@ -67,8 +68,6 @@ $(document).ready(function () {
       comment: $("#commentContent").val() 
     };
 
-    
-   
     // log the comment data to the console
     console.log("Comment Data:", commentData);
 

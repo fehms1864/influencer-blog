@@ -187,6 +187,10 @@ footer {
 #commentBox .modal-content {
   width: 60%;
 }
+.form-group label:after {
+  content: " *";
+  color: red;
+}
 /* Close Button Styles */
 .close {
   color: #aaa;
