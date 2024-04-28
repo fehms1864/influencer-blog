@@ -3,8 +3,9 @@ header.bg-light
     ul.navbar-nav.pl-3
       li.nav-item
         a.nav-link(href="/") Home
-      li.nav-item
-        a.nav-link(id="create-post") Create Blog Post
+      if user
+        li.nav-item
+         a.nav-link(id="create-post") Create Blog Post
       li.nav-item
         a.nav-link(href="contact") Contact
       li.nav-item

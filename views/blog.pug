@@ -58,7 +58,8 @@ html(lang="en")
                 button.btn.btn-warning#openBlogFormBtn(type='button') Submit New Blog Post
             else 
                 //- Button disabled
-                button.btn.btn-secondary.disabled#openBlogFormBtn(type='button', disabled) Submit New Blog Post
+                span(class="d-inline-block" tabindex="0" data-toggle="tooltip", data-placement="top", title='You must be logged in to submit a new blog post')
+                    button.btn.btn-secondary.disabled#openBlogFormBtn(type='button', disabled) Submit New Blog Post
         //- Modal for blog submission form and other modals
         include blogsubmodal.pug
 
