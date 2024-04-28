@@ -36,7 +36,7 @@ router.get('/', async function (req, res, next) {
     };
   }));
 
-  res.render('blog', { title: 'Influence Blog', user: req.user, blogs: blogsWithImageData });
+  res.render('blog', { title: 'Influence Blog', user: req.user, blogs: blogsWithImageData, messageSent: req.messageSent ?? false });
 
 });
 
@@ -84,12 +84,12 @@ router.post('/submit',
   async (req, res) => {
 
     const errors = validationResult(req);
-
+    let messageSent = true
     if (errors.isEmpty()) {
       const contactUs = new Contact(req.body);
       contactUs.save()
         .then(() => {
-          res.redirect('/');
+          res.render('contactUs', { title: 'Contact Us', messageSent });
         })
         .catch((err) => {
           console.log(err);

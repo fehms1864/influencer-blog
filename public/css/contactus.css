@@ -5,6 +5,9 @@
   text-align: center;
   color: #ec930c;
 }
+#contactPage p {
+  text-align: center;
+}
 #contactPage #contactForm {
   max-width: 500px;
   margin: 0 auto;
@@ -20,6 +23,10 @@
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+#contactPage #contactForm label:after {
+  content: " *";
+  color: red;
 }
 #contactPage #contactForm button {
   padding: 10px 20px;

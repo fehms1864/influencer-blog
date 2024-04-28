@@ -36,6 +36,6 @@ The goal is to always have customer ready code in main from which the site will 
 
 ## Commands to generate css, start db server and start the project
 
-- lessc public/less/blogstyles.less public/css/blogstyles.css
+- lessc less/blogstyles.less public/css/blogstyles.css
 - brew services start mongodb-community
 - node app
